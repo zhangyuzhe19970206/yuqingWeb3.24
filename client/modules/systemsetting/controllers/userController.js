@@ -15,7 +15,7 @@ CQ.mainApp.systemsettingController
                 var sites = "";
                 $scope.page = 0;
                 $http.get(url1).success(function(data){
-                    console.log(data);
+                    console.log('data',data);
                     var dic=data.data.topic;
                     $scope.topicList=[];
                     for (var key in dic){
@@ -493,7 +493,7 @@ CQ.mainApp.systemsettingController
 
             }
 
-            console.log($scope.pageData);
+            console.log('pageData', $scope.pageData);
         };
         //修改话题
         $scope.changeTopic = function(d){
@@ -613,6 +613,7 @@ CQ.mainApp.systemsettingController
                 var sites = "";
                 $scope.page = 0;
                 $http.get(url).success(function(data){
+                    console.log('data',data)
                     data.data.topicData.forEach(function(d){
                         sites = "";
                         d.siteLists.forEach(function(site){
@@ -802,12 +803,12 @@ CQ.mainApp.systemsettingController
                         });
                         update(d3);//将d3更新,这样返回mymodel的时候,某个模板对应的所有站点就被选中了
                     });
+
         
         };
         // 将mymodel1返回的topic对象与对应的allsite应用到mymodel界面
         $scope.usemodel = function()
         {
-            console.log()
             $("#myModal1").modal('hide');
             $("#myModal").modal('show');
             $scope.modelName = "添加话题"
@@ -986,9 +987,13 @@ CQ.mainApp.systemsettingController
         //添加话题
         $scope.newTopic = function()
         {
-            // console.log($scope.allsites);
+            //console.log($scope.allsites);
+            console.log("usersetting.html");
             $scope.modelName = "添加话题";
-            $scope.topic = {topicName:"",topicKeywords:[],siteLists:[]};
+            $scope.topic = {topicKeywords:[],siteLists:[]};
+            //$scope.topic.topicName = "xxx";
+            console.log('$scope.topic.topicName', $scope.topicForm);
+            //$scope.topic.submit_able = false;
             $scope.topic.topicKeywords.push([]);
             $scope.allsites.forEach(function(d1)
             {
@@ -1008,8 +1013,8 @@ CQ.mainApp.systemsettingController
         {
             //$("#myModal").modal('hide');
             //$('#myModal1').modal('show');
-            $scope.topic1.type1 = ''
-            console.log($scope.topic1.type1)
+            $scope.topic1.type1 = '';
+            console.log("usemodels");
 
             document.getElementById("type2").style.display="none";
             document.getElementById("type3").style.display="none";
@@ -1080,6 +1085,7 @@ CQ.mainApp.systemsettingController
                 }
             }
             console.log($scope.topic.siteLists);
+
         }
         function update(d)
         {
@@ -1135,7 +1141,10 @@ CQ.mainApp.systemsettingController
                     if($scope.topicList[i].topicId == d)
                     {
                         $scope.topicList.splice(i,1);
-                        $scope.getDataByPage($scope.page);
+                        if($scope.pageData.length<=1)
+                            $scope.getDataByPage(--$scope.page);
+                        else
+                            $scope.getDataByPage($scope.page);
                         $scope.topicCount--;
                         return true;
                     }

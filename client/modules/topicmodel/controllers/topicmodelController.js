@@ -276,7 +276,7 @@ CQ.mainApp.topicmodelController
     //$scope.event = $stateParams.event;
     
     //console.log($scope.event.id);
-    
+
     $scope.topic_id = null;
         //页面UI初始化；
         $scope.$on('$viewContentLoaded', function() {
@@ -423,7 +423,7 @@ CQ.mainApp.topicmodelController
         //修改、添加话题
         $scope.save = function()
         {
-            console.log($scope.topic.topicId);
+            console.log("新建话题");
             $scope.jsonData = {};
             $scope.jsonData.userId = $scope.userId;
             $scope.jsonData.topicId = $scope.topic.topicId
@@ -530,8 +530,14 @@ CQ.mainApp.topicmodelController
         //添加话题
         $scope.newTopic = function()
         {
+            //console.log("新建话题");
             $scope.modelName = "添加话题模板";
-            $scope.topic = {exam_type:$scope.exam_type,exam_period:$scope.exam_period,topicName:"",topicKeywords:[],siteLists:[]};
+            //$scope.topic = {exam_type:$scope.exam_type,exam_period:$scope.exam_period,topicName:"",topicKeywords:[],siteLists:[]};
+            $scope.topic = {topicKeywords:[],siteLists:[]};
+            $scope.topic.exam_type = '0';
+            $scope.topic.exam_period = '0';
+            $scope.topic.submit_able = false;
+            console.log('$scope.topic.topicName', $scope.topicForm);
             $scope.topic.topicKeywords.push([]);
             $scope.allsites.forEach(function(d1)
             {
@@ -540,7 +546,7 @@ CQ.mainApp.topicmodelController
                     d.selected = false;
                 });
             });
-            console.log($scope.topic);
+            console.log('topic',$scope.topic);
             $scope.topicNameEnable = false;
             $scope.submitUrl  = $scope.baseUrl + "/template_add";
              
@@ -571,6 +577,7 @@ CQ.mainApp.topicmodelController
                 }
             }
             console.log($scope.topic.siteLists);
+            $scope.topic.submit_able = $scope.topic.siteLists.length > 0;
         }
         function update(d)
         {
