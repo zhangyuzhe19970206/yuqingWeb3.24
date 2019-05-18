@@ -31,6 +31,9 @@
         .pc-width-10{
             width:10%;
         }
+        .pc-width-5{
+            width:5%;
+        }
     }
 </style>
 <div id="content" class="content content-full-width">
@@ -41,7 +44,7 @@
             <div class="email-btn-row f-s-15">
                 
                 
-                <a href="#myModal" class="btn btn-sm btn-primary" ng-click="newTopic()" data-toggle="modal" data-backdrop="false"><i class="fa fa-plus m-r-5"></i> 新建话题 </a>
+                <a href="#myModal" class="btn btn-sm btn-primary" ng-click="newTopic()" data-toggle="modal" data-backdrop="false"><i class="fa fa-plus m-r-5"></i> 新建话题</a>
                 <a href="#myModal1" class="btn btn-sm btn-primary" ng-click="usemodels()" data-toggle="modal" data-backdrop="false"><i class="fa fa-plus m-r-5"></i> 使用已有模板新建话题</a>
                 <a href="#/manageTopic" class="btn btn-sm btn-primary" ng-permission="2"> 管理组内话题</a>
                 <!-- <span class="dropdown">
@@ -86,6 +89,7 @@
                             <th>话题名称</th>
                             <th>查询关键字</th>
                             <th class="mobile-width-0">爬取站点</th>
+                            <th>状态</th>
                             <th>操作</th>
                         </tr>
                     </thead>
@@ -94,9 +98,10 @@
                             <td style="min-width:5em;max-width:15em;" ng-show = "false">{{topicItem.topicId}}</td>
                             
                             <td class="mobile-width-20 pc-width-15" style="min-width:6em;max-width:20em;vertical-align: middle">{{topicItem.topicName}}</td>
-                            <td class="mobile-width-60 pc-width-25" style="min-width:6em;vertical-align: middle"><span class="mobile-hide">{{toStr(topicItem.topicKeywords)}}</span><span class="mobile-show">{{toStr(topicItem.topicKeywords)}}</span></td>
-                            <td class="mobile-width-0 pc-width-45" style="vertical-align: middle"><span class="mobile-hide">{{topicItem.sitesStr}}</span></span><span class="mobile-show">{{topicItem.sitesStr}}</span></td>
-                            <td class="mobile-width-20 pc-width-15" style="min-width:6em;max-width: 15em;vertical-align: middle"><a href="#myModal" title="修改话题" class="email-btn" ng-click=changeTopic(topicItem) data-toggle="modal" data-backdrop="false"><i class="fa fa-edit"></i></a> <a href="javascript::void," title="删除话题" class="email-btn" ng-click="remove(topicItem)"><i class="fa fa-trash-o"></i></a></td>
+                            <td class="mobile-width-60 pc-width-25" style="min-width:6em;vertical-align: middle;"><span class="mobile-hide">{{toStr(topicItem.topicKeywords)}}</span><span class="mobile-show">{{toStr(topicItem.topicKeywords)}}</span></td>
+                            <td class="mobile-width-0 pc-width-45" style="vertical-align: middle;"><span class="mobile-hide">{{topicItem.sitesStr}}</span></span><span class="mobile-show">{{topicItem.sitesStr}}</span></td>
+                            <td class="mobile-width-10 pc-width-5" style="min-width:6em;max-width:20em;vertical-align: middle;">爬取</td>
+                            <td class="mobile-width-10 pc-width-10" style="min-width:6em;max-width: 15em;vertical-align: middle"><a href="#myModal" title="修改话题" class="email-btn" ng-click=changeTopic(topicItem) data-toggle="modal" data-backdrop="false"><i class="fa fa-edit"></i></a> <a href="javascript::void," title="删除话题" class="email-btn" ng-click="remove(topicItem)"><i class="fa fa-trash-o"></i></a></td>
                         </tr>
                     </tbody>
                 </table>

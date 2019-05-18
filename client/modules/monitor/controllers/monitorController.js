@@ -362,7 +362,6 @@ CQ.mainApp.monitorController.controller("monitorController", ["$rootScope", "$sc
         console.log(cons);
         PostDataService_.flushData(cons).then(function(freshdata) {
             // console.log(freshdata.data.data);
-            var res = freshdata.data.data;
             $scope.monitorData.forEach(function(d) {
                 res.forEach(function(rr) {
                     if (rr.topicId == d.topicId) {
