@@ -70,8 +70,10 @@
     .media-body a{
         word-break: break-word !important;
     }
-}
+
+
 </style>
+<html lang='en'></html>
 <!-- begin #content -->
 <div class="content" id="content">
     <div class="btn-group" ng-permission="2">
@@ -186,13 +188,13 @@
                             <i class="fa fa-minus">
                             </i>
                         </a>
-                        <a class="f-s-18 btn btn-icon btn-circle btn-success" ng-click="openModal(items.topicId)" ng-show="items.topicId!=-1" title="话题分析">
+                        <a id = 'topic_analysis_{{items.topicId}}'  class="f-s-18 btn btn-icon btn-circle btn-success" ng-click="openModal(items.topicId)" title="话题分析">
                             <i class="fa fa-bar-chart-o">
                             </i>
                         </a>
                     </div>
-                    <h4 class="panel-title f-s-15" title="发现用户:{{items.username}}">
-                        {{items.topicName}}
+                    <h4 class="panel-title f-s-15" title="发现用户:{{items.username}}"  style="line-height:150%"  ng-bind-html="items.align_topicName">
+
                     </h4>
                 </div>
                 <div class="panel-body">
@@ -227,12 +229,18 @@
                                     下面已读
                                 </div>
                                 <div ng-if="it.flag==undefine">
-                                    <a class="pull-left" href="{{it.poster.home_url}}" target="_blank">
+                                    <a class="media-left" href="{{it.poster.home_url}}" target="_blank">
                                         <img class="media-object rounded-corner w-32 " ng-if="it.poster.img_url&&it.poster.img_url !== ''&&it.poster.img_url !== ' '" ng-src="{{it.poster.img_url}}">
                                             <img class="media-object rounded-corner w-32" ng-if="!(it.poster.img_url&&it.poster.img_url !== ''&&it.poster.img_url !== ' ')" ng-src="{{pics[it.data_type]}}">
                                             </img>
                                         </img>
+                                        <h7 class="media-object">
+                                            <span style="color: red; ">
+                                                关键词
+                                            </span>
+                                        </h7>
                                     </a>
+
                                     <div class="media-body">
                                         <a class="m-b-10 h-32" ng-href="{{it.url}}" target="_blank">
                                             <!-- <h4 class="media-heading" ng-if = "it.board != 'Sina'">{{it.title}}</h4> -->
