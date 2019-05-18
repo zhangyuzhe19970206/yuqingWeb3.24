@@ -1,8 +1,8 @@
 "use strict";
-CQ.mainApp.monitorController.controller("monitorController", ["$rootScope", "$scope", "$interval", "ngDialog", "MonitorFacService", "$location", "$stateParams", "$state", "$http", "PostDataService_", "$timeout", "notice", function($rootScope, $scope, $interval, ngDialog, MonitorFacService, $location, $stateParams, $state, $http, PostDataService_, $timeout, notice) {
+CQ.mainApp.monitorController.controller("monitorController", ["$rootScope", "$scope", "$interval", "ngDialog", "MonitorFacService", "$location", "$stateParams", "$state", "$http","$sce", "PostDataService_", "$timeout", "notice", function($rootScope, $scope, $interval, ngDialog, MonitorFacService, $location, $stateParams, $state, $http, $sce, PostDataService_, $timeout, notice) {
     console.log("monitorController", "start!!!");
     //页面UI初始化；
-    console.log($stateParams);
+    console.log("$stateParams",$stateParams);
     $scope.topic_id = null;
     $scope.monitortopic_id = null;
     $scope.monitorData = null;
@@ -109,6 +109,20 @@ CQ.mainApp.monitorController.controller("monitorController", ["$rootScope", "$sc
             });
         }, 1000);
     });
+    function strlen(str){
+        var len = 0;
+        for (var i=0; i<str.length; i++) {
+            var c = str.charCodeAt(i);
+            //单字节加1
+            if ((c >= 0x0001 && c <= 0x007e) || (0xff60<=c && c<=0xff9f)) {
+                len++;
+            }
+            else {
+                len+=2;
+            }
+        }
+        return len;
+    };
 
     function getMonitorData() {
         var cons = {};
@@ -118,10 +132,9 @@ CQ.mainApp.monitorController.controller("monitorController", ["$rootScope", "$sc
         cons.pageCount = 20;
         $scope.cons = angular.copy(cons);
         $(".loader").show();
+        console.log('cons',cons);
         MonitorFacService.getMonitorData(cons).then(function(res) {
-            console.log("Here");
-            console.log($scope.getColor);
-            console.log(res);
+            console.log('res',res);
             res.unshift(res[res.length - 1]);
             res.splice(res.length - 1, 1);
             var topicWeight = {
@@ -138,10 +151,32 @@ CQ.mainApp.monitorController.controller("monitorController", ["$rootScope", "$sc
             });
             $scope.monitorData = res;
             var topicLists = [];
+            var topicName_max_length = 0;
+            $scope.monitorData.forEach(function (d) {
+                var topicName_len = 0;
+                topicName_len = strlen(d.topicName);
+                if (topicName_max_length < topicName_len) {
+                    topicName_max_length = topicName_len
+                }
+            });
+
+            $timeout(function(){
+                //console.log('topic_analysis',document.getElementsByClassName('f-s-18 btn btn-icon btn-circle btn-success'));
+                //console.log('topic_analysis_-1', document.getElementById('topic_analysis_-1'));
+                document.getElementById('topic_analysis_-1').style.visibility = "hidden";
+            });
+            //$scope.monitorData = $sce.trustAsHtml('<span>Some HTML code</span>');
             $scope.monitorData.forEach(function(d) {
                 d.fresh = true;
                 d.username = $rootScope.curentUser;
                 d.bgColor = "#337ab7";
+                d.visibile = 'visible';
+                d.align_topicName =  d.topicName + (" &nbsp;").repeat((topicName_max_length - strlen(d.topicName)));
+                if (d.topicName==='全部')
+                {
+                    d.visible = 'hidden';
+                }
+                d.align_topicName = $sce.trustAsHtml(d.align_topicName);
                 if (d.postData.length < cons.pageCount) {
                     d.isLoad = false;
                 } else {
@@ -162,7 +197,7 @@ CQ.mainApp.monitorController.controller("monitorController", ["$rootScope", "$sc
                 // });
             });
             $scope.myMonitorData = $scope.monitorData;
-            console.log($scope.monitorData);
+            console.log("monitorData",$scope.monitorData);
             // $scope.freshTopicLists = topicLists;
             getFreshData(cons);
         }, function(error) {
@@ -765,6 +800,7 @@ CQ.mainApp.monitorController.controller("monitorController", ["$rootScope", "$sc
                     if(!!data.data)
                     {
                         console.log("ZYZ");
+                        console.log(JSON.stringfy(data))
                         $scope.topic.topicId = data.data.topic_id;
                         console.log($scope.topic);
                     }
