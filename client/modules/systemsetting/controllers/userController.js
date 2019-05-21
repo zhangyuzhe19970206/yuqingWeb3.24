@@ -574,6 +574,45 @@ CQ.mainApp.systemsettingController
         });
     };
 }])
+.controller("changeMytopicstate_user", ["$rootScope", "$scope", "$http", "ngDialog", "notice",function($rootScope, $scope,
+    $http, ngDialog, notice) {
+    console.log("changestate");
+    console.log($scope.nowstate);
+    var states="";
+        if($scope.nowstate=="激活"){
+            states=false;
+        }
+        else{
+            states=true;
+        }
+        console.log(states);
+        var postdata={
+            topicId : $scope.topic_id,
+            active:states,
+            site_info:$scope.nowsiteinfo
+        };
+        postdata=JSON.stringify(postdata);
+    $scope.changestate = function() {
+        $scope.removeUrl = $scope.baseUrl + "/modifystate";
+        $http({
+            data: postdata,
+            //url:"http://118.190.133.203:8100/yqdata/modifystate",
+            url: $scope.removeUrl,
+            method: 'post'
+        })
+        .success(function(data, status, headers, config){
+            ngDialog.closeAll();
+            notice.notify_info("您好！","话题状态修改成功！","",false,"","");
+            $scope.reload($scope.topic_id,"changestate");
+                // setTimeout(function(){
+                //     window.location.reload("index.html/userSetting");
+                // },2000);
+            })
+        .error(function(error){
+            notice.notify_info("您好！", "操作失败，请重试！" ,"",false,"","");
+        });
+    };
+}])
 .controller("batchKeywords", ["$scope",function($scope) {
     console.log("batchKeywords");
     $scope.must_keywords = {"keywords":"","info":"关键词组1","error":{"null":"不能为空","pattern":"关键词之间需以英文,隔开"}};
@@ -629,6 +668,16 @@ CQ.mainApp.systemsettingController
                         d.sitesStr = sites;
                     });
                     $scope.topicList = data.data.topicData;
+                    $scope.topicList.forEach(function(d){
+                        if(d.state){
+                            d.state="激活";
+                        }
+                        else{
+                            d.state="挂起";
+                        }
+                    });
+                    /*$scope.topicList[0].state ="挂起";
+                    $scope.topicList[2].state ="挂起";*/
                     $scope.topicCount = $scope.topicList.length;
                     $scope.allsites = data.data.allSites;
                     $scope.getDataByPage($scope.page);
@@ -884,6 +933,33 @@ CQ.mainApp.systemsettingController
                 scope:$scope
             });
         };
+        //改变话题状态
+        $scope.changestate = function(d)
+        {
+            $scope.topic_id = d.topicId;
+            $scope.nowstate =d.state;
+            $scope.nowsiteinfo = d.siteLists;
+            console.log($scope.topic_id);
+            console.log($scope.nowstate);
+            if(d.state=="挂起"){
+                ngDialog.open(
+                {
+                    template: '/static/modules/systemsetting/pages/changestate.html',
+                    controller: 'changeMytopicstate_user',
+                    width:"10%",
+                    scope:$scope
+                });
+            }
+            else{
+                ngDialog.open(
+                {
+                    template: '/static/modules/systemsetting/pages/changestate1.html',
+                    controller: 'changeMytopicstate_user',
+                    width:"10%",
+                    scope:$scope
+                });
+            }
+        };
         $scope.toggle = function (scope) {
             scope.toggle();
         };
@@ -1102,6 +1178,7 @@ CQ.mainApp.systemsettingController
             {
                 d.siteLists = d.siteLists || [];
                 d.sitesStr = d.siteLists.map(d=>d.siteName).join(',');
+                d.state="激活";
                 $scope.topicList.push(d);
                 $scope.pageData.push(d);
                 if($scope.pageData.length > $scope.pageSize)
@@ -1146,6 +1223,24 @@ CQ.mainApp.systemsettingController
                         else
                             $scope.getDataByPage($scope.page);
                         $scope.topicCount--;
+                        return true;
+                    }
+                }
+            }
+            else if(opretion == "changestate")
+           {
+                for(var i = 0; i < $scope.topicList.length; i++)
+                {
+                    if($scope.topicList[i].topicId == d)
+                    {
+                        if($scope.topicList[i].state=="激活"){
+                            $scope.topicList[i].state="挂起";
+                            $scope.pageData[i%$scope.pageSize].state="挂起";
+                        }
+                        else{
+                            $scope.topicList[i].state="激活";
+                            $scope.pageData[i%$scope.pageSize].state="激活";
+                        }
                         return true;
                     }
                 }
