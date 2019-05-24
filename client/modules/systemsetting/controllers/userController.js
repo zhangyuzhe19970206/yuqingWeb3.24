@@ -601,13 +601,39 @@ CQ.mainApp.systemsettingController
             method: 'post'
         })
         .success(function(data, status, headers, config){
+            console.log(data);
             ngDialog.closeAll();
-            notice.notify_info("您好！","话题状态修改成功！","",false,"","");
-            $scope.reload($scope.topic_id,"changestate");
-                // setTimeout(function(){
-                //     window.location.reload("index.html/userSetting");
-                // },2000);
-            })
+            if(data.code==0){
+                notice.notify_info("您好！","话题状态修改成功！","",false,"","");
+                var sitess = "";
+                if(data.data.length==0){
+                    $scope.reload($scope.topic_id,"changestate");
+                }
+                else{
+                    data.data.forEach(function(site,index){
+                        if(sitess != "")
+                        {
+                            sitess += ",";
+                        }
+                        if(site.siteName)
+                        {
+                            sitess += site.siteName;
+                        }
+                        if(index==data.data.length-1){
+                            $scope.jihuosites = sitess; 
+                            console.log($scope.jihuosites);
+                            $scope.reload($scope.topic_id,"changestate",$scope.jihuosites);
+                        }
+                    });
+                }
+                    // setTimeout(function(){
+                    //     window.location.reload("index.html/userSetting");
+                    // },2000);
+            }
+            else{
+                notice.notify_info("您好！", "操作失败，请重试！" ,"",false,"","");
+            }
+        })
         .error(function(error){
             notice.notify_info("您好！", "操作失败，请重试！" ,"",false,"","");
         });
@@ -1172,7 +1198,7 @@ CQ.mainApp.systemsettingController
             }
         }
         //刷新
-        $scope.reload = function(d,opretion)
+        $scope.reload = function(d,opretion,sitesdata)
         {
             if(opretion == "save" && ($scope.modelName == "添加话题"))
             {
@@ -1229,6 +1255,7 @@ CQ.mainApp.systemsettingController
             }
             else if(opretion == "changestate")
            {
+                console.log("zyz");
                 for(var i = 0; i < $scope.topicList.length; i++)
                 {
                     if($scope.topicList[i].topicId == d)
@@ -1236,10 +1263,15 @@ CQ.mainApp.systemsettingController
                         if($scope.topicList[i].state=="激活"){
                             $scope.topicList[i].state="挂起";
                             $scope.pageData[i%$scope.pageSize].state="挂起";
+                            $scope.topicList[i].sitesStr="";
+                            $scope.pageData[i%$scope.pageSize].sitesStr="";
                         }
                         else{
                             $scope.topicList[i].state="激活";
                             $scope.pageData[i%$scope.pageSize].state="激活";
+                            $scope.topicList[i].sitesStr=sitesdata;
+                            console.log(sitesdata);
+                            $scope.pageData[i%$scope.pageSize].sitesStr=sitesdata;
                         }
                         return true;
                     }
