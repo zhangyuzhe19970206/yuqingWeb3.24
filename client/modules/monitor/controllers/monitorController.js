@@ -3,6 +3,7 @@ CQ.mainApp.monitorController.controller("monitorController", ["$rootScope", "$sc
     console.log("monitorController", "start!!!");
     //页面UI初始化；
     console.log("$stateParams",$stateParams);
+    $scope.kwds_show=false;
     $scope.topic_id = null;
     $scope.monitortopic_id = null;
     $scope.monitorData = null;
@@ -69,6 +70,7 @@ CQ.mainApp.monitorController.controller("monitorController", ["$rootScope", "$sc
             getMonitorData();
         }
     });
+
     $("#datepicker-default").datepicker({
         todayHighlight: true,
         autoclose: true,
@@ -123,7 +125,23 @@ CQ.mainApp.monitorController.controller("monitorController", ["$rootScope", "$sc
         }
         return len;
     };
-
+    $scope.show_kwds=function(kwds){
+        $scope.kwds_show = true;
+        $scope.kwds = "";
+        kwds.forEach(function(k){
+            $scope.kwds = $scope.kwds + k + ',';
+        });
+        $scope.kwds = $scope.kwds.slice(0,-1);
+        var e;
+        e = window.event;
+        var x = e.clientX;
+        var y = e.clientY;
+        console.log(e);
+        $("#kwds").css("position","fixed").css("top",(y+7) +"px").css("left",(x-145) +"px");
+    };
+    $scope.close_kwds = function(){
+        $scope.kwds_show = false;
+    };
     function getMonitorData() {
         var cons = {};
         cons.dataType = $scope.dataType;
