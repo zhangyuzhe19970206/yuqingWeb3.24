@@ -37,89 +37,77 @@
         .pc-width-10 {
             width: 10%;
         }
+        .pc-width-5{
+            width:5%;
+        }
     }
 </style>
 <div id="content" class="content content-full-width">
     <div class="p-20">
-        <!-- begin row -->
-        <div class="row">
-            <div class="col-md-12">
-                <div class="email-btn-row f-s-15">
-
-
-                    <a href="#myModal" class="btn btn-sm btn-primary" ng-click="newTopic()" data-toggle="modal"
-                       data-backdrop="false"><i class="fa fa-plus m-r-5"></i> 新建话题</a>
-                    <a href="#myModal1" class="btn btn-sm btn-primary" ng-click="usemodels()" data-toggle="modal"
-                       data-backdrop="false"><i class="fa fa-plus m-r-5"></i> 使用已有模板新建话题</a>
-                    <a href="#/manageTopic" class="btn btn-sm btn-primary" ng-permission="2"> 管理组内话题</a>
-                    <!-- <span class="dropdown">
-                        <a href="email_inbox.html#" class="email-header-link btn btn-sm btn-inverse" data-toggle="dropdown">View All <i class="fa fa-angle-down m-l-5"></i></a>
-                        <ul class="dropdown-menu">
-                            <li class="active"><a href="email_inbox.html#">All</a></li>
-                            <li><a href="email_inbox.html#">Unread</a></li>
-                            <li><a href="email_inbox.html#">Contacts</a></li>
-                            <li><a href="email_inbox.html#">Groups</a></li>
-                            <li><a href="email_inbox.html#">Newsletters</a></li>
-                            <li><a href="email_inbox.html#">Social updates</a></li>
-                            <li><a href="email_inbox.html#">Everything else</a></li>
-                        </ul>
-                    </span>
-                    <span class="dropdown">
-                        <a href="email_inbox.html#" class="email-header-link btn btn-sm btn-inverse" data-toggle="dropdown">Arrange by <i class="fa fa-angle-down m-l-5"></i></a>
-                        <ul class="dropdown-menu">
-                            <li class="active"><a href="email_inbox.html#">Date</a></li>
-                            <li><a href="email_inbox.html#">From</a></li>
-                            <li><a href="email_inbox.html#">Subject</a></li>
-                            <li><a href="email_inbox.html#">Size</a></li>
-                            <li><a href="email_inbox.html#">Conversation</a></li>
-                        </ul>
-                    </span>
-                    <span style="position: absolute; right:10px; width: 20%">
-                        <form class="pull-right">
-                            <div class="input-group m-b-15">
-                                <input type="text" class="form-control input-sm input-white" placeholder="搜索话题" />
-                                <span class="input-group-btn">
-                                    <button class="btn btn-sm btn-inverse" type="button"><i class="fa fa-search"></i></button>
-                                </span>
-                            </div>
-                        </form>
-                    </span> -->
-                </div>
-                <div class="email-content">
-                    <table class="table table-email f-s-14">
-                        <thead>
+    <!-- begin row -->
+    <div class="row">
+        <div class="col-md-12">
+            <div class="email-btn-row f-s-15">
+                
+                
+                <a href="#myModal" class="btn btn-sm btn-primary" ng-click="newTopic()" data-toggle="modal" data-backdrop="false"><i class="fa fa-plus m-r-5"></i> 新建话题</a>
+                <a href="#myModal1" class="btn btn-sm btn-primary" ng-click="usemodels()" data-toggle="modal" data-backdrop="false"><i class="fa fa-plus m-r-5"></i> 使用已有模板新建话题</a>
+                <a href="#/manageTopic" class="btn btn-sm btn-primary" ng-permission="2"> 管理组内话题</a>
+                <!-- <span class="dropdown">
+                    <a href="email_inbox.html#" class="email-header-link btn btn-sm btn-inverse" data-toggle="dropdown">View All <i class="fa fa-angle-down m-l-5"></i></a>
+                    <ul class="dropdown-menu">
+                        <li class="active"><a href="email_inbox.html#">All</a></li>
+                        <li><a href="email_inbox.html#">Unread</a></li>
+                        <li><a href="email_inbox.html#">Contacts</a></li>
+                        <li><a href="email_inbox.html#">Groups</a></li>
+                        <li><a href="email_inbox.html#">Newsletters</a></li>
+                        <li><a href="email_inbox.html#">Social updates</a></li>
+                        <li><a href="email_inbox.html#">Everything else</a></li>
+                    </ul>
+                </span>
+                <span class="dropdown">
+                    <a href="email_inbox.html#" class="email-header-link btn btn-sm btn-inverse" data-toggle="dropdown">Arrange by <i class="fa fa-angle-down m-l-5"></i></a>
+                    <ul class="dropdown-menu">
+                        <li class="active"><a href="email_inbox.html#">Date</a></li>
+                        <li><a href="email_inbox.html#">From</a></li>
+                        <li><a href="email_inbox.html#">Subject</a></li>
+                        <li><a href="email_inbox.html#">Size</a></li>
+                        <li><a href="email_inbox.html#">Conversation</a></li>
+                    </ul>
+                </span>
+                <span style="position: absolute; right:10px; width: 20%">
+                    <form class="pull-right">
+                        <div class="input-group m-b-15">
+                            <input type="text" class="form-control input-sm input-white" placeholder="搜索话题" />
+                            <span class="input-group-btn">
+                                <button class="btn btn-sm btn-inverse" type="button"><i class="fa fa-search"></i></button>
+                            </span>
+                        </div>
+                    </form>
+                </span> -->
+            </div>
+            <div class="email-content">
+                <table class="table table-email f-s-14">
+                    <thead>
                         <tr>
                             <th ng-show="false"></th>
 
                             <th>话题名称</th>
                             <th>查询关键字</th>
                             <th class="mobile-width-0">爬取站点</th>
+                            <th>状态</th>
                             <th>操作</th>
                         </tr>
                         </thead>
                         <tbody>
                         <tr ng-repeat="topicItem in pageData">
-                            <td style="min-width:5em;max-width:15em;" ng-show="false">{{topicItem.topicId}}</td>
-
-                            <td class="mobile-width-20 pc-width-15"
-                                style="min-width:6em;max-width:20em;vertical-align: middle">{{topicItem.topicName}}
-                            </td>
-                            <td class="mobile-width-60 pc-width-25" style="min-width:6em;vertical-align: middle"><span
-                                    class="mobile-hide">{{toStr(topicItem.topicKeywords)}}</span><span
-                                    class="mobile-show">{{toStr(topicItem.topicKeywords)}}</span></td>
-                            <td class="mobile-width-0 pc-width-45" style="vertical-align: middle"><span
-                                    class="mobile-hide">{{topicItem.sitesStr}}</span></span><span class="mobile-show">{{topicItem.sitesStr}}</span>
-                            </td>
-                            <td class="mobile-width-20 pc-width-15"
-                                style="min-width:6em;max-width: 15em;vertical-align: middle">
-                                <a href="#myModal" title="修改话题" class="email-btn" ng-click=changeTopic(topicItem)
-                                   data-toggle="modal"
-                                   data-backdrop="false"><i
-                                        class="fa fa-edit"></i></a>
-                                <a href="javascript:void(0)" title="删除话题"
-                                   class="email-btn" ng-click="remove(topicItem)"><i
-                                        class="fa fa-trash-o">
-                                </i></a></td>
+                            <td style="min-width:5em;max-width:15em;" ng-show = "false">{{topicItem.topicId}}</td>
+                            
+                            <td class="mobile-width-20 pc-width-15" style="min-width:6em;max-width:20em;vertical-align: middle">{{topicItem.topicName}}</td>
+                            <td class="mobile-width-60 pc-width-25" style="min-width:6em;vertical-align: middle;"><span class="mobile-hide">{{toStr(topicItem.topicKeywords)}}</span><span class="mobile-show">{{toStr(topicItem.topicKeywords)}}</span></td>
+                            <td class="mobile-width-0 pc-width-45" style="vertical-align: middle;"><span class="mobile-hide">{{topicItem.sitesStr}}</span></span><span class="mobile-show">{{topicItem.sitesStr}}</span></td>
+                            <td class="mobile-width-10 pc-width-5" style="min-width:6em;max-width:20em;vertical-align: middle;">{{topicItem.state}}</td>
+                            <td class="mobile-width-10 pc-width-10" style="min-width:6em;max-width: 15em;vertical-align: middle"><a href="#myModal" title="修改话题" class="email-btn" ng-click=changeTopic(topicItem) data-toggle="modal" data-backdrop="false" ng-if="topicItem.state=='激活'"><i class="fa fa-edit"></i></a> <a href="javascript::void," title="删除话题" class="email-btn" ng-click="remove(topicItem)"><i class="fa fa-trash-o"></i></a><a href="javascript::void," title="挂起" class="email-btn" ng-click="changestate(topicItem)" style="margin-left: -6px;" ng-if="topicItem.state=='激活'"><i class="fa fa-download"></i></a><a href="javascript::void," title="激活" class="email-btn" ng-click="changestate(topicItem)" style="margin-left: -6px;" ng-if="topicItem.state=='挂起'"><i class="fa fa-upload"></i></a></td>
                         </tr>
                         </tbody>
                     </table>
