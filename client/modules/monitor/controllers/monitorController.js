@@ -177,12 +177,12 @@ CQ.mainApp.monitorController.controller("monitorController", ["$rootScope", "$sc
                     topicName_max_length = topicName_len
                 }
             });
-            /*
+
             $timeout(function(){
                 //console.log('topic_analysis',document.getElementsByClassName('f-s-18 btn btn-icon btn-circle btn-success'));
                 //console.log('topic_analysis_-1', document.getElementById('topic_analysis_-1'));
                 document.getElementById('topic_analysis_-1').style.visibility = "hidden";
-            });*/
+            });
             //$scope.monitorData = $sce.trustAsHtml('<span>Some HTML code</span>');
             $scope.monitorData.forEach(function(d) {
                 d.fresh = true;
