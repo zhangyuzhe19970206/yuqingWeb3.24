@@ -189,7 +189,7 @@ CQ.mainApp.monitorController.controller("monitorController", ["$rootScope", "$sc
                 d.username = $rootScope.curentUser;
                 d.bgColor = "#337ab7";
                 d.visibile = 'visible';
-                d.align_topicName =  d.topicName + (" &nbsp;").repeat((topicName_max_length - strlen(d.topicName)));
+                d.align_topicName =  d.topicName + ("&ensp;").repeat((topicName_max_length - strlen(d.topicName)));
                 if (d.topicName==='全部')
                 {
                     d.visible = 'hidden';
