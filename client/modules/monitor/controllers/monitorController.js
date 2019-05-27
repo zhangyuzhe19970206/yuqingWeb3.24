@@ -177,19 +177,19 @@ CQ.mainApp.monitorController.controller("monitorController", ["$rootScope", "$sc
                     topicName_max_length = topicName_len
                 }
             });
-
+            /*
             $timeout(function(){
                 //console.log('topic_analysis',document.getElementsByClassName('f-s-18 btn btn-icon btn-circle btn-success'));
                 //console.log('topic_analysis_-1', document.getElementById('topic_analysis_-1'));
                 document.getElementById('topic_analysis_-1').style.visibility = "hidden";
-            });
+            });*/
             //$scope.monitorData = $sce.trustAsHtml('<span>Some HTML code</span>');
             $scope.monitorData.forEach(function(d) {
                 d.fresh = true;
                 d.username = $rootScope.curentUser;
                 d.bgColor = "#337ab7";
                 d.visibile = 'visible';
-                d.align_topicName =  d.topicName + (" &nbsp;").repeat((topicName_max_length - strlen(d.topicName)));
+                d.align_topicName =  d.topicName + ("&ensp;").repeat((topicName_max_length - strlen(d.topicName)));
                 if (d.topicName==='全部')
                 {
                     d.visible = 'hidden';
