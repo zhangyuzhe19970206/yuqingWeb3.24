@@ -24,12 +24,12 @@ CQ.mainApp.zhishikuController
         console.log("zhishikuController", "start!!!");
         //页面UI初始化；
         $scope.subjects=[
-        {
+        /*{
             id:0,
             name:"中印对峙",
             img:"/static/assets/img/zhishiku/zydz.jpg",
             description:"2017年6月18日至2017年8月28日，印度边防部队非法越过边界线进入了中方境内，阻挠中国边防部队在洞朗地区的正常活动，双方在该地区紧张对峙两个多月。"
-        },
+        },*/
         // {
         //     id:1,
         //     name:"萨德部署",
