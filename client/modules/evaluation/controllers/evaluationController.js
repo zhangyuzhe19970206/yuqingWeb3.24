@@ -355,7 +355,7 @@ CQ.mainApp.dkController
             myChart.showLoading();
             $.get('/static/assets/data/zhibiao1.json', function (data) {
                 myChart.hideLoading();
-                myChart.setOption(option = {
+                myChart.setOption({
                     tooltip: {
                         trigger: 'item',
                         triggerOn: 'click|mousemove',
