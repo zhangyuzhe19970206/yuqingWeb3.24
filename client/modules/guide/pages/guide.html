@@ -1,0 +1,236 @@
+<style>
+  ol>li a {
+    color: #000000;
+  }
+
+  .gallery .image-info {
+    /* border: black 1px solid; */
+  }
+
+  .gallery {
+    margin: 0 -10px;
+    display: flex;
+    flex-wrap: wrap;
+    /* 这样会使子元素都居中 */
+    /* justify-content: center; */
+  }
+
+  .gallery a {
+    text-decoration: none;
+    color: #000000;
+  }
+
+  .gallery .image-info .desc {
+    line-height: 16px;
+    font-size: 12px;
+    height: 62px;
+    overflow: hidden;
+    text-overflow: -o-ellipsis-lastline;
+    text-overflow: ellipsis;
+    display: -webkit-box;
+    -webkit-line-clamp: 4;
+    line-clamp: 4;
+    -webkit-box-orient: vertical;
+  }
+
+  .image {
+    transition: all .3s ease-in-out;
+  }
+
+  .image:hover {
+    cursor: pointer;
+    box-shadow: 0px 0px 10px rgba(0, 0, 0, .3);
+    position: relative;
+    z-index: 1;
+  }
+
+  .modal-dialog {
+    width: 600px;
+    margin: 300px auto;
+  }
+
+  label {
+    font-size: 14px;
+  }
+
+  .red {
+    color: red;
+  }
+
+  .notshow {
+    display: none;
+  }
+
+  .media-list.media-list-with-divider>li+li {
+    border-top: 1px solid #eee;
+    padding-top: 10px;
+  }
+
+  button {
+    float: right;
+  }
+
+  /* display属性渐变不生效 */
+  /* .aspect {
+    transition: all .5s ease-in;
+  } */
+</style>
+
+<!-- begin #content -->
+<div id="content" class="content">
+  <!-- begin breadcrumb -->
+  <ol class="breadcrumb pull-right">
+    <li><a href="javascript:;">Home</a></li>
+    <li><a href="javascript:;">Form Stuff</a></li>
+    <li class="active">Wizards</li>
+  </ol>
+  <!-- end breadcrumb -->
+  <!-- begin page-header -->
+  <h1 class="page-header">舆情引导 <small>通过舆情分析进行合理的消息推送</small></h1>
+  <!-- end page-header -->
+
+  <!-- begin row -->
+  <div class="row">
+    <!-- begin col-12 -->
+    <div class="col-md-12">
+      <!-- begin panel -->
+      <div class="panel panel-primary">
+        <div class="panel-body">
+          <form action="/" method="POST">
+            <div id="wizard">
+              <ol style="padding-left: 0">
+                <li>
+                  选取舆情事件
+                </li>
+                <li>
+                  选取分面和情感分析
+                </li>
+                <!-- <li>
+                  情感分析
+                </li> -->
+                <li>
+                  生成引导文本
+                </li>
+              </ol>
+              <!-- begin wizard step-1 -->
+              <div>
+                <fieldset>
+                  <div class="gallery">
+                    <div class="image gallery-group-1" ng-repeat="(i, e) in events" ng-click="selectEvent(i)">
+                      <a href="#modal-dialog" data-toggle="modal">
+                        <div class="image-inner">
+                          <img ng-src="{{e.imgUrl}}" alt="" />
+                          <p class="image-caption">
+                            {{e.keyWords}}
+                          </p>
+                        </div>
+                        <div class="image-info">
+                          <h5 class="title">{{e.event}}</h5>
+                          <div class="desc">
+                            {{e.desc}}
+                          </div>
+                        </div>
+                      </a>
+                    </div>
+                  </div>
+                </fieldset>
+              </div>
+              <!-- end wizard step-1 -->
+              <!-- begin wizard step-2 -->
+              <div>
+                <fieldset>
+                  <legend ng-class="{red: eventName == '请您选择舆情事件'}">{{eventName}}</legend>
+                  <!-- begin row -->
+                  <div class="row" ng-class="{notshow: eventName == '请您选择舆情事件'}">
+                    <div class="col-md-12" style="margin-bottom: 10px">
+                      <div class="form-group">
+                        <label class="col-md-1 control-label">选取分面</label>
+                        <div class="col-md-11">
+                          <label class="checkbox-inline" ng-repeat="(i, e) in aspects">
+                            <input type="checkbox" value="" ng-click="selectAspect(e)" ng-model="e.selected" />
+                            {{e.name}}
+                          </label>
+                          <!-- <button type="button" class="btn btn-primary" ng-click="emotionAnalyse()">执行情感分析</button> -->
+                        </div>
+                      </div>
+                    </div>
+                    <div class="col-md-6">
+                      <div class="panel panel-inverse aspect" ng-repeat="(index, x) in selectList">
+                        <div class="panel-heading">
+                          <h3 class="panel-title">
+                            {{x.name}}
+                          </h3>
+                        </div>
+                        <div class="panel-body">
+                          <ul class="media-list media-list-with-divider" style="list-style-type:disc">
+                            <li ng-repeat="item in x.text" style="list-style: none">
+                              {{item}}
+                            </li>
+                          </ul>
+                        </div>
+                    </div>
+                  </div>
+                  <div class="col-md-6" ng-show="selectList.length">
+                    <div class="panel panel-inverse" data-sortable-id="flot-chart-4">
+                      <div class="panel-heading">
+                        <h4 class="panel-title">情感分析</h4>
+                      </div>
+                      <div class="panel-body">
+                        <div id="live-updated-chart" class="height-sm" style="height: 800px"></div>
+                      </div>
+                    </div>
+                  </div>
+              </div>
+              <!-- end row -->
+              </fieldset>
+            </div>
+            <div>
+              <div class="jumbotron m-b-0 text-center">
+                <h2>舆情引导</h2>
+                <p>从正向、中立、负向三个角度对特定舆情事件进行引导 </p>
+                <p><a class="btn btn-success btn-lg" role="button" ng-click="genText()">生成引导文本</a></p>
+              </div>
+            </div>
+            <!-- end wizard step-4 -->
+        </div>
+        </form>
+      </div>
+    </div>
+    <!-- end panel -->
+  </div>
+  <!-- end col-12 -->
+</div>
+<!-- end row -->
+</div>
+<!-- end #content -->
+
+<div class="modal fade" id="modal-dialog">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
+        <h4 class="modal-title">{{eventName}}</h4>
+      </div>
+      <div class="modal-body">
+        您确认选择该事件？
+      </div>
+      <div class="modal-footer">
+        <a href="javascript:;" class="btn btn-sm btn-white" data-dismiss="modal">关闭</a>
+        <a href="javascript:;" class="btn btn-sm btn-success" ng-click="ensure()">确认</a>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- ================== BEGIN PAGE LEVEL JS ================== -->
+<script src="/static/assets/plugins/bootstrap-wizard/js/bwizard.js"></script>
+<script src="/static/assets/js/form-wizards.demo.min.js"></script>
+<script src="/static/assets/js/apps.min.js"></script>
+<!-- ================== END PAGE LEVEL JS ================== -->
+
+<script>
+  $(document).ready(function () {
+    App.init();
+    FormWizard.init();
+  });
+</script>
