@@ -208,7 +208,7 @@ CQ.mainApp.senmessageController
             //设置搜索
 
             $scope.search = function() {
-                //console.log($scope.dataObj);
+                console.log($scope.dataObj);
                 getData();
                 //getoutData();
             };

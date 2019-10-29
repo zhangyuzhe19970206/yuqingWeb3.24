@@ -1,0 +1,182 @@
+<style>
+  .dia_warning {
+    color: #f59c1a;
+  }
+  .ngdialog.ngdialog-theme-details {
+    padding: 5% !important;
+  }
+  .ngdialog.ngdialog-theme-details .ngdialog-content {
+    width: 1200px !important;
+  }
+  div a {
+    text-decoration: none;
+    color: #000000;
+  }
+  .panel {
+    margin-bottom: 0;
+  }
+  .checkbox {
+    padding: 10px;
+  }
+</style>
+<div class="panel panel-primary" data-sortable-id="ui-buttons-3">
+  <div class="panel-heading">
+    <h4 class="panel-title f-s-15">引导策略选择</h4>
+  </div>
+  <div class="panel-body">
+    <div class="form-group col-md-12">
+      <div class="col-md-2">
+        <div class="wrapper">
+          <p><b>导控策略</b></p>
+          <div class="checkbox">
+            <label>
+                <input type="checkbox" value="" ng-model="del.selected" />
+                <i class="fa fa-inbox fa-fw m-r-5"></i>正向引导
+            </label>
+          </div>
+          <div class="checkbox">
+              <label>
+                  <input type="checkbox" value="" ng-model="send.selected" />
+                  <i class="fa fa-inbox fa-fw m-r-5"></i>中立引导
+              </label>
+          </div>
+          <div class="checkbox">
+            <label>
+                <input type="checkbox" value="" ng-model="positive.selected" />
+                <i class="fa fa-inbox fa-fw m-r-5"></i>负向引导
+            </label>
+          </div>
+        </div>
+      </div>
+      <div class="col-md-10">
+        <div class="wrapper">
+          <form method="POST" name="topicForm" novalidate="false">
+            <div class="m-b-15" id='1' ng-show="del.selected">
+              <a style="display:block;"><i class="fa fa-thumbs-o-up"></i>
+                正向引导:</a>
+              <div class="panel" style="border: 1px solid #ccd0d4" ng-drop="true"
+                ng-drop-success="onDropComplete($data,$event)">
+                <div class="panel panel-inverse" data-sortable-id="table-basic-1">
+                  <div class="panel-body">
+                      <table class="table">
+                          <thead>
+                              <tr>
+                                  <th>#</th>
+                                  <th style="width: 60%">内容</th>
+                                  <th>策略</th>
+                              </tr>
+                          </thead>
+                          <tbody>
+                            <tr ng-repeat="(i, item) in genText">
+                              <td>{{i+1}}</td>
+                              <td>2018年10月28日10时08分，重庆市万州区一辆22路公交车在万州长江二桥桥面与一辆红色小轿车发生碰撞后，坠入江中。2018年11月2日，公交车坠江原因公布，据车内黑匣子监控视频显示，系乘客与司机激烈争执互殴致车辆失控。</td>
+                              <td>
+                                <label class="checkbox-inline">
+                                    <input type="checkbox" value="" />
+                                    点赞
+                                </label>
+                                <label class="checkbox-inline">
+                                    <input type="checkbox" value="" />
+                                    转发
+                                </label>
+                                <label class="checkbox-inline">
+                                  <input type="checkbox" value="" />
+                                  主动跟帖
+                                </label>
+                              </td>
+                            </tr>
+                          </tbody>
+                      </table>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div class="m-b-15" id='2' ng-show="send.selected">
+              <a style="display:block;"><i class="fa fa-hand-rock-o"></i>
+                中立引导:</a>
+              <div class="panel" style="border: 1px solid #ccd0d4" ng-drop="true"
+                ng-drop-success="onDropComplete($data,$event)">
+                <div class="panel panel-inverse" data-sortable-id="table-basic-1">
+                  <div class="panel-body">
+                      <table class="table">
+                          <thead>
+                              <tr>
+                                  <th>#</th>
+                                  <th style="width: 60%">内容</th>
+                                  <th>策略</th>
+                              </tr>
+                          </thead>
+                          <tbody>
+                              <tr ng-repeat="(i, item) in genText">
+                                  <td>{{i+1}}</td>
+                                  <td>2018年10月28日10时08分，重庆市万州区一辆22路公交车在万州长江二桥桥面与一辆红色小轿车发生碰撞后，坠入江中。2018年11月2日，公交车坠江原因公布，据车内黑匣子监控视频显示，系乘客与司机激烈争执互殴致车辆失控。</td>
+                                  <td>
+                                    <label class="checkbox-inline">
+                                        <input type="checkbox" value="" />
+                                        点赞
+                                    </label>
+                                    <label class="checkbox-inline">
+                                        <input type="checkbox" value="" />
+                                        转发
+                                    </label>
+                                    <label class="checkbox-inline">
+                                      <input type="checkbox" value="" />
+                                      主动跟帖
+                                    </label>
+                                  </td>
+                              </tr>
+                          </tbody>
+                      </table>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div class="m-b-15" id='2' ng-show="positive.selected">
+              <a style="display:block;"><i class="fa fa-thumbs-o-down"></i>
+                负向引导:</a>
+              <div class="panel" style="border: 1px solid #ccd0d4" ng-drop="true"
+                ng-drop-success="onDropComplete($data,$event)">
+                <div class="panel panel-inverse" data-sortable-id="table-basic-1">
+                  <div class="panel-body">
+                      <table class="table">
+                          <thead>
+                              <tr>
+                                  <th>#</th>
+                                  <th style="width: 60%">内容</th>
+                                  <th>策略</th>
+                              </tr>
+                          </thead>
+                          <tbody>
+                            <tr ng-repeat="(i, item) in genText">
+                              <td>{{i+1}}</td>
+                              <td>2018年10月28日10时08分，重庆市万州区一辆22路公交车在万州长江二桥桥面与一辆红色小轿车发生碰撞后，坠入江中。2018年11月2日，公交车坠江原因公布，据车内黑匣子监控视频显示，系乘客与司机激烈争执互殴致车辆失控。</td>
+                              <td>
+                                <label class="checkbox-inline">
+                                    <input type="checkbox" value="" />
+                                    点赞
+                                </label>
+                                <label class="checkbox-inline">
+                                    <input type="checkbox" value="" />
+                                    转发
+                                </label>
+                                <label class="checkbox-inline">
+                                  <input type="checkbox" value="" />
+                                  主动跟帖
+                                </label>
+                              </td>
+                            </tr>
+                          </tbody>
+                      </table>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </form>
+        </div>
+      </div>
+
+    </div>
+    <button type="submit" data-dismiss="modal" class="btn btn-primary p-l-40 p-r-40 pull-right"
+      ng-click="save()">提交</button>
+  </div>
+</div>

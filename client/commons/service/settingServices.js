@@ -653,6 +653,14 @@ angular.module('settingservice',[])
                 permission: "5",
             },
             {
+                label:"舆情引导",
+                link: "#/guide",
+                hasShow: true,
+                icon: "fa fa-send",
+                items: "",
+                permission: "5",
+            },
+            {
                 label:"话题管理",
                 link: "#/userSetting",
                 hasShow: true,
