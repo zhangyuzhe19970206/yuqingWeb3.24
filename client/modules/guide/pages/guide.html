@@ -23,7 +23,7 @@
   .gallery .image-info .desc {
     line-height: 16px;
     font-size: 12px;
-    height: 62px;
+    height: 64px;
     overflow: hidden;
     text-overflow: -o-ellipsis-lastline;
     text-overflow: ellipsis;
@@ -74,6 +74,14 @@
   /* .aspect {
     transition: all .5s ease-in;
   } */
+  .message {
+    padding-top: 30px;
+    text-align: center;
+  }
+  
+  .bwizard-steps li a {
+    font-size: 16px;
+  }
 </style>
 
 <!-- begin #content -->
@@ -125,8 +133,8 @@
                           </p> -->
                         </div>
                         <div class="image-info">
-                          <h5 class="title">{{e.name}}</h5>
-                          <div class="desc">
+                          <h5 class="title" style="font-size: 16px;">{{e.name}}</h5>
+                          <div class="desc" style="font-size: 14px;">
                             {{e.description}}
                           </div>
                         </div>
@@ -144,9 +152,9 @@
                   <div class="row" ng-class="{notshow: eventName == '请您选择舆情事件'}">
                     <div class="col-md-12" style="margin-bottom: 10px">
                       <div class="form-group">
-                        <label class="col-md-1 control-label">选取分面</label>
-                        <div class="col-md-11">
-                          <label class="checkbox-inline" ng-repeat="(i, e) in aspects">
+                        <label class="col-md-2 control-label" style="font-size: 16px;">选取分面</label>
+                        <div class="col-md-10">
+                          <label class="checkbox-inline" ng-repeat="(i, e) in aspects" style="font-size: 16px;">
                             <input type="checkbox" value="" ng-click="selectAspect(e)" ng-model="e.selected" />
                             {{e.name}}
                           </label>
@@ -163,7 +171,7 @@
                         </div>
                         <div class="panel-body">
                           <ul class="media-list media-list-with-divider" style="list-style-type:disc">
-                            <li ng-repeat="item in x.text" style="list-style: none">
+                            <li ng-repeat="item in x.text" style="list-style: none;font-size: 14px;">
                               {{item}}
                             </li>
                           </ul>
@@ -225,8 +233,14 @@
                                 <a class="btn btn-sm btn-primary" ng-click="genText()" data-backdrop="false"><i class="fa fa-plus m-r-5"></i> 生成引导文本 </a>
                               </div>
                             </div>
+                            <div ng-if="!text.length" class="message">
+                              <h3>
+                                暂无该方向的引导文本
+                              </h3>
+                            </div>
+                            
                             <table id="data-table" class="table table-striped table-bordered nowrap f-s-14"
-                              width="100%">
+                              width="100%" ng-if="text.length">
                               <thead>
                                 <tr>
                                   <!-- <th>序号</th> -->
@@ -254,7 +268,7 @@
                               </tbody>
                             </table>
                           </div>
-                          <nav>
+                          <!-- <nav>
                             <div class="btn-group m-b-10 f-s-14 max">
                               <button type="button" class="btn btn-white page" ng-click="Firstpage()">首页</button>
                               <button type="button" class="btn btn-white page" ng-click="Previous()"
@@ -267,7 +281,7 @@
                                 ng-class="{disabled:pageNum>=pages}">下一页</button>
                               <button type="button" class="btn btn-white page" ng-click="Lastpage()">尾页</button>
                             </div>
-                          </nav>
+                          </nav> -->
                         </div>
                       </div>
                       <!-- end panel -->

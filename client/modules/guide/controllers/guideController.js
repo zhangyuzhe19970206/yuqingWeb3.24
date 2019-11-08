@@ -35,6 +35,7 @@ CQ.mainApp.guideController
         $("#modal-dialog").attr("aria-hidden", "true");
         $scope.aspects = [];
         $scope.selectList = [];
+        $scope.text = [];
         $("#wizard ol li:nth-child(2)").trigger("click");
         GuideFacService.getAspectData({"event_id": $scope.eventId, "count": "3"}).then(res => {
           console.log(res);
@@ -95,7 +96,6 @@ CQ.mainApp.guideController
           notice.notify_info("请您选择舆情事件!");
           $("#wizard ol li:nth-child(1)").trigger("click");
         } else {
-         
           const { choice_way, choice_aspects } = $scope.dataType;
           if(choice_way && choice_aspects) {
             GuideFacService.getTextGenerate({"direction": choice_way, "aspect_id": choice_aspects}).then(res => {
@@ -119,12 +119,22 @@ CQ.mainApp.guideController
           operate.push(2);
         }
         console.log(operate.join(","));
-        GuideFacService.postText({
-          text: txt,
-          operate: operate.join(",")
-        }).then(res => {
-          console.log(res);
-        });
+        if(!operate.length) {
+          notice.notify_info("请选择引导策略!");
+        } else {
+          GuideFacService.postText({
+            text: txt,
+            operate: operate.join(",")
+          }).then(res => {
+            console.log(res);
+            if(res.status === 200) {
+              notice.notify_info("微博发布成功，请前往个人主页查看!");
+            } else {
+              notice.notify_info("出现错误!");
+            }
+          });
+        }
+        
       };
     }])
     // .controller('textController', ['$scope', '$rootScope', '$http', "ngDialog", "notice", function($scope, $rootScope, $http, ngDialog, notice) {
