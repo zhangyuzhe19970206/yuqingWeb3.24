@@ -162,7 +162,7 @@
                         </div>
                       </div>
                     </div>
-                    <div class="col-md-6">
+                    <div class="col-md-12">
                       <div class="panel panel-inverse" ng-repeat="(index, x) in selectList">
                         <div class="panel-heading">
                           <h3 class="panel-title">
@@ -170,15 +170,23 @@
                           </h3>
                         </div>
                         <div class="panel-body">
-                          <ul class="media-list media-list-with-divider" style="list-style-type:disc">
+                          <ul class="media-list media-list-with-divider" style="list-style-type:disc; margin-bottom: 20px;">
                             <li ng-repeat="item in x.text" style="list-style: none;font-size: 14px;">
                               {{item}}
                             </li>
                           </ul>
+                          <div class="col-md-6" ng-show="selectList.length">
+                            <div id="bar_{{index}}" class="height-sm" style="height: 800px"></div>
+                            <!-- <div id="wordsCloud_{{index}}" class="height-sm" style="height: 800px"></div> -->
+                          </div>
+                          <div class="col-md-6" ng-show="selectList.length">
+                            <!-- <div id="live-updated-chart_{{index}}" class="height-sm" style="height: 800px"></div> -->
+                            <div id="wordsCloud_{{index}}" class="height-sm" style="height: 800px"></div>
+                          </div>
                         </div>
                       </div>
                     </div>
-                    <div class="col-md-6" ng-show="selectList.length">
+                    <!-- <div class="col-md-6" ng-show="selectList.length">
                       <div class="panel panel-inverse" data-sortable-id="flot-chart-4">
                         <div class="panel-heading">
                           <h4 class="panel-title">情感分析</h4>
@@ -187,7 +195,7 @@
                           <div id="live-updated-chart" class="height-sm" style="height: 800px"></div>
                         </div>
                       </div>
-                    </div>
+                    </div> -->
                   </div>
                   <!-- end row -->
                 </fieldset>
