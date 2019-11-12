@@ -78,7 +78,7 @@
     padding-top: 30px;
     text-align: center;
   }
-  
+
   .bwizard-steps li a {
     font-size: 16px;
   }
@@ -170,19 +170,21 @@
                           </h3>
                         </div>
                         <div class="panel-body">
-                          <ul class="media-list media-list-with-divider" style="list-style-type:disc; margin-bottom: 20px;">
-                            <li ng-repeat="item in x.text" style="list-style: none;font-size: 14px;">
-                              {{item}}
-                            </li>
-                          </ul>
-                          <div class="col-md-6" ng-show="selectList.length">
-                            <div id="bar_{{index}}" class="height-sm" style="height: 800px"></div>
-                            <!-- <div id="wordsCloud_{{index}}" class="height-sm" style="height: 800px"></div> -->
-                          </div>
                           <div class="col-md-6" ng-show="selectList.length">
                             <!-- <div id="live-updated-chart_{{index}}" class="height-sm" style="height: 800px"></div> -->
                             <div id="wordsCloud_{{index}}" class="height-sm" style="height: 800px"></div>
                           </div>
+                          <div class="col-md-6" ng-show="selectList.length">
+                            <div id="bar_{{index}}" class="height-sm" style="height: 800px"></div>
+                            <!-- <div id="wordsCloud_{{index}}" class="height-sm" style="height: 800px"></div> -->
+                          </div>
+
+                          <ul class="media-list media-list-with-divider"
+                            style="list-style-type:disc; margin-top: 20px;">
+                            <li ng-repeat="item in x.text" style="list-style: none;font-size: 14px;">
+                              {{item}}
+                            </li>
+                          </ul>
                         </div>
                       </div>
                     </div>
@@ -238,7 +240,8 @@
                                 </select>
                               </span>
                               <div class="email-btn-row hidden-xs f-s-15">
-                                <a class="btn btn-sm btn-primary" ng-click="genText()" data-backdrop="false"><i class="fa fa-plus m-r-5"></i> 生成引导文本 </a>
+                                <a class="btn btn-sm btn-primary" ng-click="genText()" data-backdrop="false"><i
+                                    class="fa fa-plus m-r-5"></i> 生成引导文本 </a>
                               </div>
                             </div>
                             <div ng-if="!text.length" class="message">
@@ -246,9 +249,9 @@
                                 暂无该方向的引导文本
                               </h3>
                             </div>
-                            
-                            <table id="data-table" class="table table-striped table-bordered nowrap f-s-14"
-                              width="100%" ng-if="text.length">
+
+                            <table id="data-table" class="table table-striped table-bordered nowrap f-s-14" width="100%"
+                              ng-if="text.length">
                               <thead>
                                 <tr>
                                   <!-- <th>序号</th> -->
@@ -271,7 +274,8 @@
                                       点赞
                                     </label>
                                   </td>
-                                  <td><button type="button" class="btn btn-primary" ng-click="ensureMethod(item)">确认策略</button></td>
+                                  <td><button type="button" class="btn btn-primary"
+                                      ng-click="ensureMethod(item)">确认策略</button></td>
                                 </tr>
                               </tbody>
                             </table>
