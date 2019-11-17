@@ -67,7 +67,11 @@
   }
 
   button {
-    float: right;
+    /* float: right; */
+  }
+
+  .guideAspect:hover {
+    cursor: pointer;
   }
 
   /* display属性渐变不生效 */
@@ -87,11 +91,11 @@
 <!-- begin #content -->
 <div id="content" class="content">
   <!-- begin breadcrumb -->
-  <ol class="breadcrumb pull-right">
+  <!-- <ol class="breadcrumb pull-right">
     <li><a href="javascript:;">Home</a></li>
     <li><a href="javascript:;">Form Stuff</a></li>
     <li class="active">Wizards</li>
-  </ol>
+  </ol> -->
   <!-- end breadcrumb -->
   <!-- begin page-header -->
   <h1 class="page-header">舆情引导 <small>通过舆情分析进行合理的消息推送</small></h1>
@@ -167,6 +171,8 @@
                         <div class="panel-heading">
                           <h3 class="panel-title">
                             {{x.name}}
+                            <div class="guideAspect" style="float: right" ng-click="guideAspect(x)"><i class="fa fa-2x fa-send-o" style="font-size: 1.2em"></i>引导该分面</div>
+                            <!-- <a style="float: right" ng-click="guideAspect(x)">引导该分面</a> -->
                           </h3>
                         </div>
                         <div class="panel-body">
@@ -264,7 +270,7 @@
                                 <tr class="odd gradeX" ng-repeat="(i, item) in text">
                                   <!-- <td class="width-200">{{i}}</td> -->
                                   <td style="width: 60%;">{{item.txt}}</td>
-                                  <td style="width: 30%;">
+                                  <td style="width: 20%;">
                                     <label class="checkbox-inline">
                                       <input type="checkbox" value="" ng-model="item.first.selected" />
                                       发布
@@ -274,8 +280,13 @@
                                       点赞
                                     </label>
                                   </td>
-                                  <td><button type="button" class="btn btn-primary"
-                                      ng-click="ensureMethod(item)">确认策略</button></td>
+                                  <td>
+                                    <button type="button" class="btn btn-primary"
+                                      ng-click="ensureMethod(i, item)">确认策略</button>
+                                    <button type="button" class="btn btn-success" ng-click="gotoWeibo()" ng-show="weibo{{i}}">
+                                      <i class="fa fa-weibo"></i>查看
+                                    </button>
+                                  </td>
                                 </tr>
                               </tbody>
                             </table>
@@ -321,9 +332,9 @@
     <div class="modal-content">
       <div class="modal-header">
         <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
-        <h4 class="modal-title">{{eventName}}</h4>
+        <h3 class="modal-title">{{eventName}}</h3>
       </div>
-      <div class="modal-body">
+      <div class="modal-body" style="font-size: 16px;">
         您确认选择该事件？
       </div>
       <div class="modal-footer">

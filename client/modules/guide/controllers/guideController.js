@@ -96,6 +96,8 @@ CQ.mainApp.guideController
       console.log($scope.events[i].name);
       $scope.eventName = $scope.events[i].name;
       $scope.eventId = $scope.events[i].event_id;
+      console.log(document.querySelector(`.gallery .gallery-group-1:nth-child(${i + 1}) > a`));
+      // $(`.gallery .gallery-group-1:nth-child(${i + 1}) > a`).trigger("click");
     };
     $scope.ensure = function () {
       $("#modal-dialog").css("display", "none");
@@ -140,7 +142,6 @@ CQ.mainApp.guideController
       //     drawClouds();
       //   }, 0);
       // }
-      console.log(6666);
       setTimeout(() => {
         drawClouds();
       }, 1);
@@ -163,7 +164,22 @@ CQ.mainApp.guideController
       };
     };
 
-    $scope.ensureMethod = function (item) {
+    $scope.guideAspect = function(item) {
+      console.log(item);
+      $("#wizard ol li:nth-child(3)").trigger("click");
+      $scope.dataType.choice_aspects = item.aspect_id;
+      $scope.dataType.choice_way = "1";
+      GuideFacService.getTextGenerate({ "direction": "1", "aspect_id": item.aspect_id }).then(res => {
+        console.log(res);
+        $scope.text = res.text.map(item => ({ "txt": item }));
+      });
+    }
+
+    $scope.gotoWeibo = function() {
+      window.open('https://weibo.com/u/7330074104');
+    }
+
+    $scope.ensureMethod = function (i, item) {
       console.log(item);
       let operate = [];
       let { txt, first, second } = item;
@@ -184,12 +200,12 @@ CQ.mainApp.guideController
           console.log(res);
           if (res.status === 200) {
             notice.notify_info("微博发布成功，请前往个人主页查看!");
+            $scope[`weibo${i}`] = true;
           } else {
             notice.notify_info("出现错误!");
           }
         });
       }
-
     };
   }])
     // .controller('textController', ['$scope', '$rootScope', '$http', "ngDialog", "notice", function($scope, $rootScope, $http, ngDialog, notice) {
