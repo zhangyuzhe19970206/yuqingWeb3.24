@@ -54,6 +54,12 @@ CQ.mainApp.zhishikuController
                 params:{"event":null},
                 controller: "evolutionaryController"
             })
+            .state("zhishiku.alignment", {
+                url:"/alignment",
+                templateUrl: "/static/modules/zhishiku/pages/alignment.html",
+                params:{"event":null},
+                controller: "alignmentController"
+            })
             .state("zhishiku.guidance", {
                 url:"/guidance",
                 templateUrl: "/static/modules/zhishiku/pages/guidance.html",
