@@ -1455,8 +1455,8 @@ CQ.mainApp.zhishikuController
                 App.runui();
             }
         });
-    }]).controller("guidanceController", ["$rootScope", "$scope", "$http", "ngDialog", "$state",
-    function($rootScope, $scope, $http, ngDialog, $state) {
+    }]).controller("guidanceController", ["$rootScope", "$scope", "$http", "ngDialog", "$state","drawTwoGraph",
+    function($rootScope, $scope, $http, ngDialog, $state,drawTwoGraph) {
         console.log("guidanceController", "start!!!");
         $rootScope.modelName="舆情引导";
         //页面UI初始化；
@@ -1474,6 +1474,29 @@ CQ.mainApp.zhishikuController
 
                 });
             }
+        });
+    }]).controller("alignmentController", ["$rootScope", "$scope", "$http", "ngDialog", "$state",
+    function($rootScope, $scope, $http, ngDialog, $state) {
+        console.log("alignmentController", "start!!!");
+        $rootScope.modelName="网络对齐";
+        //页面UI初始化；
+        $scope.$on('$viewContentLoaded', function() {
+            // if($rootScope.mainController) {
+            //     console.log("zhishiku app start!!!");
+            //     App.runui();
+            //     $http({
+            //         method:"get",
+            //         url:"/static/assets/data/zhishiku/yindao.json"
+            //     }).then(function(res){
+            //         $scope.guideData = res.data;
+            //         console.log($scope.guideData);
+            //     },function (res) {
+
+            //     });
+            // }
+            const svg = document.getElementById('mysvg');
+            drawTwoGraph.drawTwoGraph(svg);
+
         });
     }]).controller("evaluationController", ["$rootScope", "$scope", "$http", "ngDialog", "$state",
     function($rootScope, $scope, $http, ngDialog, $state) {
