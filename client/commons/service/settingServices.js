@@ -455,7 +455,7 @@ angular.module('settingservice',[])
                 },
                 ]
             },
-            {
+            /*{
                 label: "微信类",
                 link: "#/monitor/4/-1", 
                 hasShow:true,
@@ -464,7 +464,7 @@ angular.module('settingservice',[])
                 siteId: -1,
                 items: "",
                 permission: "1",
-            },
+            },*/
             {
                 label: "全网搜索",
                 link: "#/monitor/5/-1", 
