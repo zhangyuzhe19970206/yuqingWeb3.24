@@ -9,7 +9,7 @@ angular.module('usermanageService',['commons'])
         };*/
         factories.addUser = function(data) {
             return $http.post(CQ.variable.RESTFUL_URL + "usersignup", data);
-            //return $http.post("http://118.190.133.203:8100/yqdata/senmassage/addmsg", data);
+            //return $http.post("http://39.102.48.39:8100/yqdata/senmassage/addmsg", data);
         };
         return factories;
     }])

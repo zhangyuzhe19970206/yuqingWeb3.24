@@ -646,7 +646,7 @@ CQ.mainApp.zhishikuController
         var page_num=10,pages,posts,page=1,siteNames={"MicroBlog":"微博","baidutieba":"百度贴吧"},post_filters={},date_tick=[],
         siteDefaultImg={"新浪微博":"/static/assets/img/weibo.svg","百度贴吧":"/static/assets/img/tieba.svg","微信公众号":"/static/assets/img/weixin1.svg","其他":"/static/assets/img/news2.svg","推特":"/static/assets/img/twitter.svg","论坛":"/static/assets/img/luntan.svg"};
         //页面UI初始化；
-        var url = $scope.event.from_subject.id == 0 ? "http://118.190.133.203:8899/yqdata/event_detail":CQ.variable.RESTFUL_URL+"event_detail";
+        var url = $scope.event.from_subject.id == 0 ? "http://39.102.48.39:8899/yqdata/event_detail":CQ.variable.RESTFUL_URL+"event_detail";
         $http({
             method:"get",
             url:url,

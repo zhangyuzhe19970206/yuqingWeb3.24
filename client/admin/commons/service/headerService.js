@@ -4,7 +4,7 @@ angular.module("headerService", ['commons'])
         var factories = {};
         factories.getUnread = $resource(CQ.variable.RESTFUL_URL+"notreadlist", parseResource.params, parseResource.actions);
         factories.getUnreadNum = $resource(CQ.variable.RESTFUL_URL+"unreadnum", parseResource.params, parseResource.actions);
-        // factories.getUnreadNum = $resource("http://118.190.133.203:8100/yqdata/unreadnum", parseResource.params, parseResource.actions);
+        // factories.getUnreadNum = $resource("http://39.102.48.39:8100/yqdata/unreadnum", parseResource.params, parseResource.actions);
 
         return factories;
     }])

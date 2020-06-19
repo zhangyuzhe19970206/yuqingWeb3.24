@@ -72,7 +72,7 @@ CQ.mainApp.frameController
 				    });
 				  }
 					// create websocket
-					var ws = new WebSocket("ws://118.190.133.203:8200/websocketdata/pull_post");
+					var ws = new WebSocket("ws://39.102.48.39:8200/websocketdata/pull_post");
 					ws.onmessage = function(evt){
 					var imgs = ['/static/assets/img/news.png','/static/assets/img/luntan.png','/static/assets/img/weibo.png','/static/assets/img/tieba.png','/static/assert/img/weixin.png','/static/assets/img/search.png'];
 						var res = JSON.parse(evt.data)
@@ -107,7 +107,7 @@ CQ.mainApp.frameController
 			// 	$scope.curentUser = newValue;
 			// 	console.log($scope.curentUser);
 			// });
-			// $http.get("http://118.190.133.203:8100/yqdata/user_attr").then(function(data){
+			// $http.get("http://39.102.48.39:8100/yqdata/user_attr").then(function(data){
 			// 	console.log(data);
 			// });
 			// $rootScope.headerController = true;

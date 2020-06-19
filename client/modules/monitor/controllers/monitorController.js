@@ -986,7 +986,7 @@ CQ.mainApp.monitorController.controller("monitorController", ["$rootScope", "$sc
             }
                     // console.log(new d.constructor());
                     $scope.submitUrl = $scope.baseUrl + "/modifytopic";
-                    // $scope.submitUrl = "http://118.190.133.203:8100/yqdata/modifytopic";
+                    // $scope.submitUrl = "http://39.102.48.39:8100/yqdata/modifytopic";
                     $scope.allsites.forEach(function(d3){
                         d3.selected = false;
                         d3.detail_sites.forEach(function(d1)
@@ -1677,7 +1677,7 @@ CQ.mainApp.monitorController.controller("monitorController", ["$rootScope", "$sc
         $scope.removeUrl = $scope.baseUrl + "/deletetopic";
         $http({
             params: {topicId : $scope.topic_id},
-            //url:"http://118.190.133.203:8100/yqdata/deletetopic",
+            //url:"http://39.102.48.39:8100/yqdata/deletetopic",
             url: $scope.removeUrl,
             method: 'get',
         })

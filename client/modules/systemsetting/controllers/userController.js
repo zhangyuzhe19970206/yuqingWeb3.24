@@ -10,7 +10,7 @@ CQ.mainApp.systemsettingController
                 $scope.baseUrl = CQ.variable.RESTFUL_URL ;
                 $scope.userId = 1;
                 var url1 = $scope.baseUrl+"/adminmanagetopic";
-                //var url1 = "http://118.190.133.203:8100/yqdata/adminmanagetopic";
+                //var url1 = "http://39.102.48.39:8100/yqdata/adminmanagetopic";
 
                 var sites = "";
                 $scope.page = 0;
@@ -215,7 +215,7 @@ CQ.mainApp.systemsettingController
             console.log($scope.jsonData);
             $http({
                 url: $scope.submitUrl,
-                //url:"http://118.190.133.203:8100/yqdata/batchsettopic",
+                //url:"http://39.102.48.39:8100/yqdata/batchsettopic",
                 method: 'post',
                 data: $scope.jsonData,
             }).success(function(data, status, headers, config){
@@ -508,7 +508,7 @@ CQ.mainApp.systemsettingController
             console.log($scope.topic);
                     // console.log(new d.constructor());
                     $scope.submitUrl = $scope.baseUrl + "/modifytopic";
-                    // $scope.submitUrl = "http://118.190.133.203:8100/yqdata/modifytopic";
+                    // $scope.submitUrl = "http://39.102.48.39:8100/yqdata/modifytopic";
                     $scope.allsites.forEach(function(d3){
                         console.log(d3);
                         d3.selected = false;
@@ -533,7 +533,7 @@ CQ.mainApp.systemsettingController
         $scope.removeUrl = $scope.baseUrl + "/deletetopicother";
         $http({
             params: {topicId : $scope.topic_id, user_name : $scope.user_name},
-            //url:"http://118.190.133.203:8100/yqdata/deletetopicother",
+            //url:"http://39.102.48.39:8100/yqdata/deletetopicother",
             url: $scope.removeUrl,
             method: 'get',
         })
@@ -557,7 +557,7 @@ CQ.mainApp.systemsettingController
         $scope.removeUrl = $scope.baseUrl + "/deletetopic";
         $http({
             params: {topicId : $scope.topic_id},
-            //url:"http://118.190.133.203:8100/yqdata/deletetopic",
+            //url:"http://39.102.48.39:8100/yqdata/deletetopic",
             url: $scope.removeUrl,
             method: 'get',
         })
@@ -596,7 +596,7 @@ CQ.mainApp.systemsettingController
         $scope.removeUrl = $scope.baseUrl + "/modifystate";
         $http({
             data: postdata,
-            //url:"http://118.190.133.203:8100/yqdata/modifystate",
+            //url:"http://39.102.48.39:8100/yqdata/modifystate",
             url: $scope.removeUrl,
             method: 'post'
         })
@@ -752,7 +752,7 @@ CQ.mainApp.systemsettingController
             }
 
            $scope.baseUrl = CQ.variable.RESTFUL_URL ;
-                //htt:p//118.190.133.203:8100/yqdata/deletetopic
+                //htt:p//39.102.48.39:8100/yqdata/deletetopic
                 var url = $scope.baseUrl+"/template_show";
                 // var url="http://192.168.30.115:8001/yqdata/template_show";
                 // console.log(url)
@@ -784,14 +784,14 @@ CQ.mainApp.systemsettingController
                     $scope.type22 = 2
                 } 
              
-                //var url="http://118.190.133.203:8001/yqdata/template_show";
+                //var url="http://39.102.48.39:8001/yqdata/template_show";
                 //?userId=" + $scope.userId;
                 // var url = "/static/setup.json";
                 var sites = "";
                 $scope.page = 0;
                 $http({
                     params: {exam_type:$scope.type11,exam_period:$scope.type22},
-                    //url:"http://118.190.133.203:8100/yqdata/deletetopic",
+                    //url:"http://39.102.48.39:8100/yqdata/deletetopic",
                     url: url,
                     method: 'get',
                 })
@@ -1143,7 +1143,7 @@ CQ.mainApp.systemsettingController
 
                 // $http({
                 //     params: {exam_type : $scope.topic1.type1,exam_period:$scope.topic1.type2},
-                //     //url:"http://118.190.133.203:8100/yqdata/deletetopic",
+                //     //url:"http://39.102.48.39:8100/yqdata/deletetopic",
                 //     url: url,
                 //     method: 'get',
                 // })
@@ -1340,8 +1340,8 @@ CQ.mainApp.systemsettingController
             console.log($scope.topic);
                     // console.log(new d.constructor());
                     $scope.submitUrl = $scope.baseUrl + "/modifytopic";
-                    // $scope.submitUrl = "http://118.190.133.203:8001/yqdata/modifytopic";
-                                        // $scope.submitUrl = "http://118.190.133.203:8001/yqdata/template_modify";
+                    // $scope.submitUrl = "http://39.102.48.39:8001/yqdata/modifytopic";
+                                        // $scope.submitUrl = "http://39.102.48.39:8001/yqdata/template_modify";
 
                     $scope.allsites.forEach(function(d3){
                         // console.log(d3);

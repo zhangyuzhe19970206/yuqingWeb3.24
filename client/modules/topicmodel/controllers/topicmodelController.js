@@ -225,10 +225,10 @@ CQ.mainApp.topicmodelController
     console.log("delete topic");
     $scope.deleteMyTopic = function() {
         $scope.removeUrl = $scope.baseUrl + "/template_delete";
-        //$scope.removeUrl="http://118.190.133.203:8001/yqdata/template_delete";
+        //$scope.removeUrl="http://39.102.48.39:8001/yqdata/template_delete";
         $http({
             params: {topicId : $scope.topic_id},
-            //url:"http://118.190.133.203:8100/yqdata/deletetopic",
+            //url:"http://39.102.48.39:8100/yqdata/deletetopic",
             url: $scope.removeUrl,
             method: 'get',
         })
@@ -283,16 +283,16 @@ CQ.mainApp.topicmodelController
             if($rootScope.mainController) {
                 $scope.userId = 1;
                 $scope.baseUrl = CQ.variable.RESTFUL_URL ;
-                //htt:p//118.190.133.203:8100/yqdata/deletetopic
+                //htt:p//39.102.48.39:8100/yqdata/deletetopic
                 var url = $scope.baseUrl+"/template_show";
-                //var url="http://118.190.133.203:8001/yqdata/dataSourceTree";
+                //var url="http://39.102.48.39:8001/yqdata/dataSourceTree";
                 console.log($scope.exam_type)
 
                 var sites = "";
                 $scope.page = 0;
                 $http({
                     params: {exam_type : $scope.exam_type,exam_period:$scope.exam_period},
-                    //url:"http://118.190.133.203:8100/yqdata/deletetopic",
+                    //url:"http://39.102.48.39:8100/yqdata/deletetopic",
                     url: url,
                     method: 'get',
                 })
@@ -550,7 +550,7 @@ CQ.mainApp.topicmodelController
             $scope.topicNameEnable = false;
             $scope.submitUrl  = $scope.baseUrl + "/template_add";
              
-            //$scope.submitUrl  ="http://118.190.133.203:8001/yqdata/template_add";
+            //$scope.submitUrl  ="http://39.102.48.39:8001/yqdata/template_add";
         }
         //选择站点
         $scope.checkBoxChange = function(d,typesite)
@@ -712,7 +712,7 @@ CQ.mainApp.topicmodelController
             console.log($scope.topic);
                     // console.log(new d.constructor());
                     $scope.submitUrl = $scope.baseUrl + "/template_modify";
-                    // $scope.submitUrl = "http://118.190.133.203:8001/yqdata/template_modify";
+                    // $scope.submitUrl = "http://39.102.48.39:8001/yqdata/template_modify";
                     // $scope.submitUrl = "http://118.190.30.115:8001/yqdata/template_modify";
                     $scope.allsites.forEach(function(d3){
                         console.log(d3);
