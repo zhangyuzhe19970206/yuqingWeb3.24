@@ -14,7 +14,7 @@ CQ.variable = {
     SECRET:"nicai",
     MAX_LOGIN_TIME:2*3600*1000,
     APIKEY: null,
-    RESTFUL_URL: "http://39.102.48.39:8899/yqdata"
+    RESTFUL_URL: "http://39.102.48.39:8090/yqdata"
 };
 CQ.variables = {};
 CQ.variables.CURRENT_USER = "";
