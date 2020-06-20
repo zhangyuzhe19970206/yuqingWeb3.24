@@ -276,7 +276,7 @@ By default, 192 words (768 bytes) are dropped, but you can configure the algorit
 {{{
 <script src="http://crypto-js.googlecode.com/svn/tags/3.1/build/rollups/aes.js"></script>
 <script>
-    var key = CryptoJS.enc.Hex.parse('000102030405060708899a0b0c0d0e0f');
+    var key = CryptoJS.enc.Hex.parse('000102030405060708090a0b0c0d0e0f');
     var iv  = CryptoJS.enc.Hex.parse('101112131415161718191a1b1c1d1e1f');
 
     var encrypted = CryptoJS.AES.encrypt("Message", key, { iv: iv });
@@ -401,7 +401,7 @@ Here's how you might write a JSON formatter:
 {{{
 <script src="http://crypto-js.googlecode.com/svn/tags/3.1/build/rollups/aes.js"></script>
 <script>
-    var key = CryptoJS.enc.Hex.parse('000102030405060708899a0b0c0d0e0f');
+    var key = CryptoJS.enc.Hex.parse('000102030405060708090a0b0c0d0e0f');
     var iv  = CryptoJS.enc.Hex.parse('101112131415161718191a1b1c1d1e1f');
 
     var aesEncryptor = CryptoJS.algo.AES.createEncryptor(key, { iv: iv });
