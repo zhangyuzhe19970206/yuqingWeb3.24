@@ -174,6 +174,23 @@ angular.module('commons',[])
                 config.headers.authorization = crypto.b64encode(accountManage.getToken()+'#'+Math.random()*100000+'#'+(new Date()).getTime());
                 return config;
             },
+            response: function(response,b,c,d) {
+            　　// do something on response success
+                // headers_f = response.headers
+                // console.log(response.headers)
+                // c["Access-Control-Allow-Credentials"]=true;
+                // response.headers = function(c){return f(c)}
+                console.log("1234",response,b,c,d)
+                $q.when(response).then(function(result){
+                    console.log(result);
+                });
+                response.config.headers["Access-Control-Allow-Credentials"] = true
+                console.log(response.headers())
+                response.headers()["Access-Control-Allow-Credentials"] = false
+                console.log(response.headers("Access-Control-Allow-Credentials"))
+                // response.headers.Access_Control_Allow_Credentials = false
+                return response;
+            },
             responseError: function (response) {
                 if (response.status === 401 || response.status === 403) {
                     $rootScope.$broadcast('event:auth-loginRequired');
