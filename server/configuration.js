@@ -11,7 +11,7 @@ module.exports = {
         userToken: ""
 	},
     server: {
-        listenPort: 8090,
+        listenPort: 8899,
         securePort: 8445,
         distFolder: path.resolve(__dirname, "../client/"),
         staticUrl: "/static",
@@ -19,9 +19,9 @@ module.exports = {
         cookieSecret: "srs-vte-lab"
     },
     restServer:{
-        baseUrl:"http://39.102.48.39:8090/yqdata",
+        baseUrl:"http://39.102.48.39:8899/yqdata",
         host:"39.102.48.39",
-        port:8090,
+        port:8899,
         basePath:"/yqdata",
     }
 };
